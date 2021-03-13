@@ -36,3 +36,66 @@
     transform: rotate(360deg);
   }
 }
+
+.react-bootstrap-table {
+  display: block;
+  width: 5%;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo {
+  padding-left: 7px;
+}
+
+.center {
+  text-align: center;
+  list-style-position: inside;
+}
+
+div,
+button {
+  margin: 5px;
+}
+
+body {
+  padding-top: 80px;
+}
+
+.center1 {
+  text-align: justify;
+}
+.center1 > div {
+  display: inline-block;
+  line-height: 30px;
+  padding: 0 10px;
+}
+.center1:after {
+  content: " ";
+  display: inline-block;
+  width: 100%;
+}
+
+.space-lower {
+  padding-bottom: 10px;
+}
