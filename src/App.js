@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import { useReducer } from "react";
-import { useState, useEffect, React } from "react";
+import * as React from 'react';
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Info from "./components/Info";
 import Login from "./components/Login";
@@ -29,7 +30,8 @@ function userReducer(state, action) {
       return state;
   }
 }
-//export const UserContext = React.createContext();
+export const UserContext = React.createContext();
+export const EventsContext = React.createContext();
 
 function App() {
   const [isLoggedIn, dispatch] = useReducer(userReducer, false);
@@ -53,7 +55,8 @@ function App() {
   }, [eventInfo]);
 
   return (
-    //<UserContext.Provider value={[isLoggedIn, dispatch]}>
+    <UserContext.Provider value={[isLoggedIn, dispatch]}>
+      <EventsContext.Provider value={eventInfo}>
       <Router>
         <Navbar isLoggedIn={isLoggedIn} dispatch={dispatch}/>
         <div className="app">
@@ -83,7 +86,8 @@ function App() {
           </Switch>
         </div>
       </Router>
-   // </UserContext.Provider>
+      </EventsContext.Provider>
+    </UserContext.Provider>
       
   );
 }

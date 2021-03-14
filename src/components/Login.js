@@ -1,5 +1,5 @@
 import { USER_ACTIONS } from "../App";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 
 const Login = (props) => {
    let history = useHistory();

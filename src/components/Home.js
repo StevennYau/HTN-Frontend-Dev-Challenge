@@ -2,49 +2,50 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
+ // unix converter for time
+ export function timeConverter(UNIX_timestamp) {
+  let unix_timestamp = UNIX_timestamp;
+  // Create a new JavaScript Date object based on the timestamp
+  // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+  var date = new Date(unix_timestamp);
+  // Hours part from the timestamp
+  var hours = date.getHours();
+  // Minutes part from the timestamp
+  var minutes = "0" + date.getMinutes();
+  // get AM or PM using moment js
+  let result = moment(UNIX_timestamp).format("A");
+  // Will display time in 10:30 AM/PM format
+  var formattedTime = hours + ":" + minutes.substr(-2) + " " + result;
+  return formattedTime;
+};
+
+// unix converter for date
+export function dateConverter(UNIX_timestamp) {
+  var a = new Date(UNIX_timestamp);
+  var months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var time = month + " " + date + ", " + year;
+  return time;
+};
+
+
 const Home = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
-
-  // unix converter for date
-  const dateConverter = (UNIX_timestamp) => {
-    var a = new Date(UNIX_timestamp);
-    var months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var time = month + " " + date + ", " + year;
-    return time;
-  };
-
-  // unix converter for time
-  const timeConverter = (UNIX_timestamp) => {
-    let unix_timestamp = UNIX_timestamp;
-    // Create a new JavaScript Date object based on the timestamp
-    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-    var date = new Date(unix_timestamp);
-    // Hours part from the timestamp
-    var hours = date.getHours();
-    // Minutes part from the timestamp
-    var minutes = "0" + date.getMinutes();
-    // get AM or PM using moment js
-    let result = moment(UNIX_timestamp).format("A");
-    // Will display time in 10:30 AM/PM format
-    var formattedTime = hours + ":" + minutes.substr(-2) + " " + result;
-    return formattedTime;
-  };
 
   // sort events based on start time
   const sortEvents = () => {
@@ -55,15 +56,17 @@ const Home = (props) => {
 
   if (props.eventInfo) {
     //only render if props.eventInfo is populated
-    sortEvents();
-    console.log(props.isLoggedIn);
-    
+    sortEvents();    
     return (
       <div className="container">
+        <div className="container d-flex justify-content-center">
+          <h1>Events</h1>
+        </div>
         <div>
           <form className="form-group">
             <input
               type="text"
+              className="form-control "
               placeholder="Search Event Names..."
               onChange={(event) => {
                 setSearchTerm(event.target.value);
@@ -78,11 +81,6 @@ const Home = (props) => {
               return val;
             } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
               return val;
-              /* if (props.isLoggedIn === false && val.permission === "public" ) {
-                return val;
-              } else if (props.isLoggedIn === true) {
-                return val;
-              } */
             }
           })
           .map((event, index) => {
