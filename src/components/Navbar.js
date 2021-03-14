@@ -25,7 +25,9 @@ const userContext = useContext(UserContext);
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        {userContext[0] === false && 
+        
+      </div>
+      {userContext[0] === false && 
           <Link className="pull-right" to="/login">
             <button>Login</button>
           </Link>
@@ -35,7 +37,6 @@ const userContext = useContext(UserContext);
             <button onClick={() => userContext[1]({ type: USER_ACTIONS.LOGOUT })} >Log Out</button>
           </Link>
         }
-      </div>
     </nav>
   );
 };
