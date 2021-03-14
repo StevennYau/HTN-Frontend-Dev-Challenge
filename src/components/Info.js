@@ -14,10 +14,6 @@ const Info = (props) => {
   const [event, setEvent] = useState();
 
   useEffect(() => {
-    console.log(userContext[0]);
-    console.log(userContext[1]);
-    console.log(eventContext);
-
     if (eventContext != null) {
       eventContext.events.map((event) => {
         if (event.id == props.match.params.id) {
@@ -25,15 +21,9 @@ const Info = (props) => {
         }
       });
     }
-
-    console.log("USER CONTEXT OF EVENTS");
-    console.log(eventContext);
-    console.log(event);
   }, [event, props, uri, userContext]);
 
   if (event) {
-    console.log(props.match.params.isLoggedIn);
-    console.log(event.permission);
     if (
       props.match.params.isLoggedIn === "false" &&
       event.permission === "private"

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
- // unix converter for time
- export function timeConverter(UNIX_timestamp) {
+// unix converter for time
+export function timeConverter(UNIX_timestamp) {
   let unix_timestamp = UNIX_timestamp;
   // Create a new JavaScript Date object based on the timestamp
   // multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -17,7 +17,7 @@ import moment from "moment";
   // Will display time in 10:30 AM/PM format
   var formattedTime = hours + ":" + minutes.substr(-2) + " " + result;
   return formattedTime;
-};
+}
 
 // unix converter for date
 export function dateConverter(UNIX_timestamp) {
@@ -41,11 +41,11 @@ export function dateConverter(UNIX_timestamp) {
   var date = a.getDate();
   var time = month + " " + date + ", " + year;
   return time;
-};
-
+}
 
 const Home = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterTerm, setFilterTerm] = useState("default");
 
   // sort events based on start time
   const sortEvents = () => {
@@ -54,9 +54,19 @@ const Home = (props) => {
     });
   };
 
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setFilterTerm(event.target.value);
+  }
+
+  useEffect(() => {
+    console.log(filterTerm);
+  }, [filterTerm]);
+
+
   if (props.eventInfo) {
     //only render if props.eventInfo is populated
-    sortEvents();    
+    sortEvents();
     return (
       <div className="container">
         <div className="container d-flex justify-content-center">
@@ -74,12 +84,42 @@ const Home = (props) => {
             />
           </form>
         </div>
+        <div className="form-group">
+          <label htmlFor="exampleFormControlSelect1">Filter By:</label>
+          <select className="form-control" id="exampleFormControlSelect1" onChange={handleChange}>
+            <option value="default">Time (Default)</option>
+            <option value="workshop">Workshops</option>
+            <option value="activity">Activities</option>
+            <option value="tech_talk">Tech Talks</option>
+          </select>
+        </div>
 
         {props.eventInfo.events
           .filter((val) => {
+            //console.log(val.event_type);
+            if (filterTerm === "default") {
+              return val;
+            } else if (filterTerm === "workshop") {
+              if (val.event_type === "workshop") {
+                return val;
+              }
+            } else if (filterTerm === "activity") {
+              console.log("activity");
+              if (val.event_type === "activity") {
+                return val;
+              }
+            } else if (filterTerm === "tech_talk") {
+              if (val.event_type === "tech_talk") {
+                return val;
+              }
+            }
+          })
+          .filter((val) => {
             if (searchTerm === "") {
               return val;
-            } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            } else if (
+              val.name.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
               return val;
             }
           })
@@ -91,13 +131,16 @@ const Home = (props) => {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">
-                    {dateConverter(event.start_time)}: {" "}
+                    {dateConverter(event.start_time)}:{" "}
                     {timeConverter(event.start_time)} to{" "}
                     {dateConverter(event.end_time)}:{" "}
                     {timeConverter(event.end_time)} EST
                   </h5>
                   <p className="card-text">{event.description}</p>
-                  <Link to={`/info/${event.id}/${props.isLoggedIn}`} className="btn btn-outline-secondary">
+                  <Link
+                    to={`/info/${event.id}/${props.isLoggedIn}`}
+                    className="btn btn-outline-secondary"
+                  >
                     Learn More
                   </Link>
                 </div>

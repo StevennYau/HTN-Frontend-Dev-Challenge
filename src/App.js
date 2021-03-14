@@ -15,18 +15,12 @@ export const USER_ACTIONS = {
 };
 
 function userReducer(state, action) {
-  console.log("in reducer");
-  console.log(action);
-  console.log(state);
   switch (action.type) {
     case USER_ACTIONS.LOGIN:
-      console.log("TRUE");
       return true;
     case USER_ACTIONS.LOGOUT:
-      console.log("false");
       return false;
     default:
-      console.log("else");
       return state;
   }
 }
