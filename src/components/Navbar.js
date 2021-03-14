@@ -28,12 +28,12 @@ const userContext = useContext(UserContext);
         
       </div>
       {userContext[0] === false && 
-          <Link className="pull-right" to="/login">
+          <Link className="float-right" to="/login">
             <button>Login</button>
           </Link>
         }
         {userContext[0] === true && 
-          <Link className="pull-right" to="/">
+          <Link className="float-right" to="/">
             <button onClick={() => userContext[1]({ type: USER_ACTIONS.LOGOUT })} >Log Out</button>
           </Link>
         }

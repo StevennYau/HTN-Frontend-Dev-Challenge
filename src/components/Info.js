@@ -77,7 +77,7 @@ const Info = (props) => {
                     <strong>Public Link:</strong> <a href={event.public_url}>here!</a>
                   </li>
                 )}
-                <li>
+                <li> 
                   <strong>Start Time:</strong> {dateConverter(event.start_time)}
                   : {timeConverter(event.start_time)}
                 </li>

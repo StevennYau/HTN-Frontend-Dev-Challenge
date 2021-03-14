@@ -95,7 +95,6 @@ const Home = () => {
 
         {eventContext.events
           .filter((val) => {
-            //console.log(val.event_type);
             if (filterTerm === "default") {
               return val;
             } else if (filterTerm === "workshop") {
@@ -136,12 +135,14 @@ const Home = () => {
                     {timeConverter(event.end_time)} EST
                   </h5>
                   <p className="card-text">{event.description}</p>
+                  <div className="float-right">
                   <Link
                     to={`/info/${event.id}/${userContext[0]}`}
-                    className="btn btn-outline-secondary"
+                    class="btn btn-secondary"
                   >
                     Learn More
                   </Link>
+                  </div>
                 </div>
               </div>
             );
