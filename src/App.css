@@ -91,5 +91,10 @@ body {
 .speaker-pfp{
   max-height: 200px;
   max-height: 200px;
-  padding-bottom: 21px;
+  padding-bottom: 5px;
+  padding-top: 21px;
+}
+
+li{
+  padding-top: 15px;
 }

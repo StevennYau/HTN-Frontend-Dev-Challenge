@@ -46,28 +46,10 @@ const Info = (props) => {
           <div className="card border-secondary">
             <div className="card-header font-weight-bold text-center">{event.name}</div>
             <div className="card-body">
-              {event.speakers.length === 0 && (
-                <h5 className="card-title text-center">
-                  No Speakers For This Event
-                </h5>
-              )}
-              {event.speakers.length !== 0 && (
-                <div className="text-center">
-                  {event.speakers[0].profile_pic != null && (
-                    <img
-                      className="speaker-pfp"
-                      src={event.speakers[0].profile_pic}
-                    />
-                  )}
-                  <h5 className="card-title">
-                    Speaker: {event.speakers[0].name}{" "}
-                  </h5>
-                </div>
-              )}
+            <h5>About The Event:</h5>
               <p className="card-text">{event.description}</p>
-              <h5>About The Event:</h5>
               <ul>
-                <li>
+                <li> 
                   <strong>Event Type:</strong> {event.event_type}
                 </li>
                 {event.permission === "public" && userContext[0] && (
@@ -93,20 +75,37 @@ const Info = (props) => {
                   <strong>End Time:</strong> {dateConverter(event.end_time)}:{" "}
                   {timeConverter(event.end_time)}
                 </li>
+                {event.speakers.length === 0 && (
+                <li>
+                  No Speakers For This Event
+                </li>
+              )}
+              {event.speakers.length !== 0 && (
+                  <li>
+                    <strong>Speaker:</strong> {event.speakers[0].name}{" "}
+                    
+                  </li>
+              )}
+              {event.speakers[0].profile_pic != null && (
+                    <img
+                      className="speaker-pfp"
+                      src={event.speakers[0].profile_pic}
+                    />
+                  )}
               </ul>
-            </div>
             <div className="card-footer bg-transparent">
               <strong>Related Events:</strong>
               <ul>
               {event.related_events.map((eventId) => {
                 return eventContext.events.map((events, index) => {
                   if (events.id == eventId) {
-                    return (<li key={index}>{events.name}</li>)
+                    return (<li key={index}><Link to={`/info/${events.id}/${userContext[0]}`}>{events.name}</Link></li>)
                   }
                 })
               })}
               </ul>
             </div>
+          </div>
           </div>
         </div>
       );

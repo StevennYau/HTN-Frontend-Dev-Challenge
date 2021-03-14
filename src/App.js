@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import { useReducer } from "react";
-import * as React from 'react';
+import * as React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Info from "./components/Info";
@@ -51,38 +51,18 @@ function App() {
   return (
     <UserContext.Provider value={[isLoggedIn, dispatch]}>
       <EventsContext.Provider value={eventInfo}>
-      <Router>
-        <Navbar isLoggedIn={isLoggedIn} dispatch={dispatch}/>
-        <div className="app">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <Home
-                  {...props}
-                  eventInfo={eventInfo}
-                  isLoggedIn={isLoggedIn}
-                />
-              )}
-            />
-            <Route exact path="/info/:id/:isLoggedIn" component={Info} />
-            <Route
-              exact
-              path="/login"
-              render={(props) => (
-                <Login
-                  {...props}
-                  dispatch={dispatch}
-                />
-              )}
-            />
-          </Switch>
-        </div>
-      </Router>
+        <Router>
+          <Navbar />
+          <div className="app">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/info/:id/:isLoggedIn" component={Info} />
+              <Route exact path="/login" component={Login} />
+            </Switch>
+          </div>
+        </Router>
       </EventsContext.Provider>
     </UserContext.Provider>
-      
   );
 }
 

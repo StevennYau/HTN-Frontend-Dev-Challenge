@@ -1,11 +1,14 @@
 import { USER_ACTIONS } from "../App";
 import { useHistory } from "react-router";
+import { UserContext } from "../App";
+import { useContext } from "react";
 
-const Login = (props) => {
+const Login = () => {
+   const userContext = useContext(UserContext);
    let history = useHistory();
    
    function handleClick() {
-      props.dispatch({ type: USER_ACTIONS.LOGIN })
+      userContext[1]({ type: USER_ACTIONS.LOGIN })
       history.push("/");
    }
 

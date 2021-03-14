@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { UserContext, EventsContext } from "../App";
+import { useContext } from "react";
 
 // unix converter for time
 export function timeConverter(UNIX_timestamp) {
@@ -43,13 +45,15 @@ export function dateConverter(UNIX_timestamp) {
   return time;
 }
 
-const Home = (props) => {
+const Home = () => {
+  const userContext = useContext(UserContext);
+  const eventContext = useContext(EventsContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterTerm, setFilterTerm] = useState("default");
 
   // sort events based on start time
   const sortEvents = () => {
-    props.eventInfo.events.sort(function (x, y) {
+    eventContext.events.sort(function (x, y) {
       return x.start_time - y.start_time;
     });
   };
@@ -59,13 +63,8 @@ const Home = (props) => {
     setFilterTerm(event.target.value);
   }
 
-  useEffect(() => {
-    console.log(filterTerm);
-  }, [filterTerm]);
-
-
-  if (props.eventInfo) {
-    //only render if props.eventInfo is populated
+  if (eventContext) {
+    //only render if events are populated
     sortEvents();
     return (
       <div className="container">
@@ -94,7 +93,7 @@ const Home = (props) => {
           </select>
         </div>
 
-        {props.eventInfo.events
+        {eventContext.events
           .filter((val) => {
             //console.log(val.event_type);
             if (filterTerm === "default") {
@@ -138,7 +137,7 @@ const Home = (props) => {
                   </h5>
                   <p className="card-text">{event.description}</p>
                   <Link
-                    to={`/info/${event.id}/${props.isLoggedIn}`}
+                    to={`/info/${event.id}/${userContext[0]}`}
                     className="btn btn-outline-secondary"
                   >
                     Learn More
@@ -150,7 +149,7 @@ const Home = (props) => {
       </div>
     );
   } else {
-    //if props.eventInfo is not populated, do not render anything
+    //if events are not populated, do not render anything
     return null;
   }
 };
