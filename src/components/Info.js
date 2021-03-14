@@ -54,7 +54,12 @@ const Info = (props) => {
                 </li>
                 {event.permission === "public" && userContext[0] && (
                   <li>
-                    <strong>Link:</strong> <a href={event.private_url}>here!</a>
+                    <strong>Private Link:</strong> <a href={event.private_url}>here!</a>
+                  </li>
+                )}
+                {event.permission === "public" && userContext[0] && (
+                  <li>
+                    <strong>Public Link:</strong> <a href={event.public_url}>here!</a>
                   </li>
                 )}
                 {event.permission === "public" && !userContext[0] && (
@@ -64,7 +69,12 @@ const Info = (props) => {
                 )}
                 {event.permission === "private" && (
                   <li>
-                    <strong>Link:</strong> <a href={event.private_url}>here!</a>
+                    <strong>Private Link:</strong> <a href={event.private_url}>here!</a>
+                  </li>
+                )}
+                {event.permission === "private" && (
+                  <li>
+                    <strong>Public Link:</strong> <a href={event.public_url}>here!</a>
                   </li>
                 )}
                 <li>
@@ -86,7 +96,7 @@ const Info = (props) => {
                     
                   </li>
               )}
-              {event.speakers[0].profile_pic != null && (
+              {(event.speakers.length !== 0 && event.speakers[0].profile_pic != null) && (
                     <img
                       className="speaker-pfp"
                       src={event.speakers[0].profile_pic}
