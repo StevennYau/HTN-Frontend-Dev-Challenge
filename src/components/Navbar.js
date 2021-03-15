@@ -3,9 +3,9 @@ import { USER_ACTIONS } from "../App";
 import { UserContext } from "../App";
 import { useContext } from "react";
 
-
 const Navbar = () => {
-const userContext = useContext(UserContext);
+  const userContext = useContext(UserContext);
+
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand logo" to="/">
@@ -22,19 +22,25 @@ const userContext = useContext(UserContext);
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        
-      </div>
-      {userContext[0] === false && 
-          <Link className="float-right" to="/login">
-            <button className="btn btn-secondary">Login</button>
-          </Link>
-        }
-        {userContext[0] === true && 
-          <Link className="float-right" to="/">
-            <button className="btn btn-secondary"onClick={() => userContext[1]({ type: USER_ACTIONS.LOGOUT })} >Log Out</button>
-          </Link>
-        }
+      <div
+        className="collapse navbar-collapse"
+        id="navbarSupportedContent"
+      ></div>
+      {userContext[0] === false && (
+        <Link className="float-right" to="/login">
+          <button className="btn btn-secondary">Login</button>
+        </Link>
+      )}
+      {userContext[0] === true && (
+        <Link className="float-right" to="/">
+          <button
+            className="btn btn-secondary"
+            onClick={() => userContext[1]({ type: USER_ACTIONS.LOGOUT })}
+          >
+            Log Out
+          </button>
+        </Link>
+      )}
     </nav>
   );
 };

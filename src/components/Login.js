@@ -4,18 +4,18 @@ import { UserContext } from "../App";
 import { useContext } from "react";
 
 const Login = () => {
-   const userContext = useContext(UserContext);
-   let history = useHistory();
-   
-   function handleClick() {
-      userContext[1]({ type: USER_ACTIONS.LOGIN })
-      history.push("/");
-   }
+  const userContext = useContext(UserContext);
+  let history = useHistory();
+
+  // hard coded login to be successful everytime, updates user state and redirects to homepage after
+  function handleClick() {
+    userContext[1]({ type: USER_ACTIONS.LOGIN });
+    history.push("/");
+  }
 
   return (
     <form className="container">
-      <h3>Log in</h3>
-
+      <h3>Log in</h3> 
       <div className="form-group">
         <label>Username</label>
         <input
@@ -25,7 +25,6 @@ const Login = () => {
           required
         />
       </div>
-
       <div className="form-group space-lower">
         <label>Password</label>
         <input
@@ -35,14 +34,14 @@ const Login = () => {
           required
         />
       </div>
-      <button 
-      onClick={handleClick} 
-      className="btn btn-dark btn-lg btn-block"
-      type="button">
+      <button
+        onClick={handleClick}
+        className="btn btn-dark btn-lg btn-block"
+        type="button"
+      >
         Sign in
       </button>
     </form>
-    
   );
 };
 

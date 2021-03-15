@@ -5,10 +5,6 @@ import { useContext } from "react";
 import { timeConverter, dateConverter } from "./Home";
 
 const Info = (props) => {
-  const uri =
-    "https://api.hackthenorth.com/v3/graphql?query={ event(id: " +
-    props.match.params.id +
-    ") { id name event_type permission start_time end_time description speakers { name profile_pic } public_url private_url related_events } }";
   const userContext = useContext(UserContext);
   const eventContext = useContext(EventsContext);
   const [event, setEvent] = useState();
@@ -21,7 +17,7 @@ const Info = (props) => {
         }
       });
     }
-  }, [event, props, uri, userContext]);
+  }, [event, props, userContext]);
 
   if (event) {
     if (

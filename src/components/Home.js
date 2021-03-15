@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { UserContext, EventsContext } from "../App";
@@ -8,7 +8,6 @@ import { useContext } from "react";
 export function timeConverter(UNIX_timestamp) {
   let unix_timestamp = UNIX_timestamp;
   // Create a new JavaScript Date object based on the timestamp
-  // multiplied by 1000 so that the argument is in milliseconds, not seconds.
   var date = new Date(unix_timestamp);
   // Hours part from the timestamp
   var hours = date.getHours();
@@ -58,13 +57,13 @@ const Home = () => {
     });
   };
 
+  // set state of filter when select form changes
   const handleChange = (event) => {
-    console.log(event.target.value);
     setFilterTerm(event.target.value);
-  }
+  };
 
+  //only render if events are populated
   if (eventContext) {
-    //only render if events are populated
     sortEvents();
     return (
       <div className="container">
@@ -85,7 +84,11 @@ const Home = () => {
         </div>
         <div className="form-group">
           <label htmlFor="exampleFormControlSelect1">Filter By:</label>
-          <select className="form-control" id="exampleFormControlSelect1" onChange={handleChange}>
+          <select
+            className="form-control"
+            id="exampleFormControlSelect1"
+            onChange={handleChange}
+          >
             <option value="default">Time (Default)</option>
             <option value="workshop">Workshops</option>
             <option value="activity">Activities</option>
@@ -102,7 +105,6 @@ const Home = () => {
                 return val;
               }
             } else if (filterTerm === "activity") {
-              console.log("activity");
               if (val.event_type === "activity") {
                 return val;
               }
@@ -136,12 +138,12 @@ const Home = () => {
                   </h5>
                   <p className="card-text">{event.description}</p>
                   <div className="float-right">
-                  <Link
-                    to={`/info/${event.id}/${userContext[0]}`}
-                    class="btn btn-secondary"
-                  >
-                    Learn More
-                  </Link>
+                    <Link
+                      to={`/info/${event.id}/${userContext[0]}`}
+                      className="btn btn-secondary"
+                    >
+                      Learn More
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -149,8 +151,8 @@ const Home = () => {
           })}
       </div>
     );
-  } else {
     //if events are not populated, do not render anything
+  } else {
     return null;
   }
 };

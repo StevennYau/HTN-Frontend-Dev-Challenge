@@ -9,11 +9,13 @@ import axios from "axios";
 import Info from "./components/Info";
 import Login from "./components/Login";
 
+// constant of user's possible actions
 export const USER_ACTIONS = {
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
 };
 
+// reducer to set state of user's login state
 function userReducer(state, action) {
   switch (action.type) {
     case USER_ACTIONS.LOGIN:
@@ -24,6 +26,7 @@ function userReducer(state, action) {
       return state;
   }
 }
+
 export const UserContext = React.createContext();
 export const EventsContext = React.createContext();
 
@@ -34,12 +37,12 @@ function App() {
   const [eventInfo, setEventInfo] = useState();
 
   useEffect(() => {
-    // use axios to hit endpoint and collect data
+    /** use axios to hit endpoint and collect data */
     axios
       .get(`${uri}`)
       .then((res) => {
+        // only update if eventInfo is empty
         if (eventInfo == null) {
-          // only update if eventInfo is empty
           setEventInfo(res.data.data);
         }
       })
