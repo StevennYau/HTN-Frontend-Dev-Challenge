@@ -9,6 +9,16 @@ const Info = (props) => {
   const eventContext = useContext(EventsContext);
   const [event, setEvent] = useState();
 
+  const displayEvent = (event_type) => {
+     if (event_type === "workshop") {
+      return "Workshop";
+     } else if (event_type === "activity") {
+      return "Activity";
+     } else {
+      return "Tech Talk";
+     }
+  }
+
   useEffect(() => {
     if (eventContext != null) {
       eventContext.events.map((event) => {
@@ -46,7 +56,7 @@ const Info = (props) => {
               <p className="card-text">{event.description}</p>
               <ul>
                 <li> 
-                  <strong>Event Type:</strong> {event.event_type}
+                  <strong>Event Type:</strong> {displayEvent(event.event_type)}
                 </li>
                 {event.permission === "public" && userContext[0] && (
                   <li>
