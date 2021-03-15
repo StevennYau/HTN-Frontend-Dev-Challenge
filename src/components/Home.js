@@ -97,6 +97,7 @@ const Home = () => {
         
         {/* Filter and Map through the search and filter options to return the correct data */}
         {eventContext.events
+        //this filter is for the filter function for the events
           .filter((val) => {
             if (filterTerm === "default") {
               return val;
@@ -114,6 +115,7 @@ const Home = () => {
               }
             }
           })
+          // this filter is for the search function 
           .filter((val) => {
             if (searchTerm === "") {
               return val;
@@ -123,6 +125,7 @@ const Home = () => {
               return val;
             }
           })
+          // this maps the returned data and renders the events
           .map((event, index) => {
             return (
               <div key={index} className="card mb-4 border-secondary">
