@@ -1,6 +1,5 @@
-import { USER_ACTIONS } from "../App";
+import { USER_ACTIONS, UserContext } from "../App";
 import { useHistory } from "react-router";
-import { UserContext } from "../App";
 import { useContext } from "react";
 
 const Login = () => {

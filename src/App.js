@@ -1,13 +1,13 @@
 import "./App.css";
+import { useState, useEffect, useReducer } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
-import { useReducer } from "react";
-import * as React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import Info from "./components/Info";
 import Login from "./components/Login";
+import * as React from "react";
+import axios from "axios";
+
 
 // constant of user's possible actions
 export const USER_ACTIONS = {

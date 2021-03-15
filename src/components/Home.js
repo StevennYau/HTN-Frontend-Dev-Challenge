@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { UserContext, EventsContext } from "../App";
-import { useContext } from "react";
 
 // unix converter for time
 export function timeConverter(UNIX_timestamp) {
@@ -62,7 +61,7 @@ const Home = () => {
     setFilterTerm(event.target.value);
   };
 
-  //only render if events are populated
+  //only render if events are populated with information
   if (eventContext) {
     sortEvents();
     return (
@@ -95,7 +94,8 @@ const Home = () => {
             <option value="tech_talk">Tech Talks</option>
           </select>
         </div>
-
+        
+        {/* Filter and Map through the search and filter options to return the correct data */}
         {eventContext.events
           .filter((val) => {
             if (filterTerm === "default") {

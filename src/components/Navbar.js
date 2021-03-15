@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { USER_ACTIONS } from "../App";
-import { UserContext } from "../App";
+import { USER_ACTIONS, UserContext } from "../App";
 import { useContext } from "react";
 
 const Navbar = () => {
