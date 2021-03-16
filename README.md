@@ -1,8 +1,7 @@
 # Hack The North Frontend Developer Challenge 2021
 
 ## Live Demonstration
-
-In the project directory, you can run:
+This application was deployed through Heroku and can be viewed at https://rocky-sierra-82628.herokuapp.com/
 
 ### `npm start`
 
