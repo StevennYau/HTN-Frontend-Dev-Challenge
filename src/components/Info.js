@@ -134,14 +134,6 @@ const Info = (props) => {
                   <br />
                 </div>
               )}
-              {event.permission === "private" && (
-                <div className="details">
-                  <FaExternalLinkAlt className="mx-3" />
-                  <strong>Learn More:</strong>{" "}
-                  <a href={event.public_url}>here!</a>
-                  <br />
-                </div>
-              )}
 
               <div className="card-footer bg-transparent">
                 <strong>Related Events:</strong>
