@@ -118,11 +118,19 @@ const Home = () => {
           // this filter is for the search function
           .filter((val) => {
             if (searchTerm === "") {
-              return val;
+              if (userContext[0] === false && val.permission === "public") {
+                return val;
+              } else if (userContext[0] === true) {
+                return val;
+              }
             } else if (
               val.name.toLowerCase().includes(searchTerm.toLowerCase())
             ) {
-              return val;
+              if (userContext[0] === false && val.permission === "public") {
+                return val;
+              } else if (userContext[0] === true) {
+                return val;
+              }
             }
           })
           // this maps the returned data and renders the events
@@ -142,7 +150,7 @@ const Home = () => {
                   <p className="card-text">{event.description}</p>
                   <div className="float-right">
                     <Link
-                      to={`/info/${event.id}/${userContext[0]}`}
+                      to={`/info/${event.id}`}
                       className="btn btn-secondary"
                     >
                       Learn More

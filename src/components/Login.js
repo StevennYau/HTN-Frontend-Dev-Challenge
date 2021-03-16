@@ -36,7 +36,7 @@ const Login = () => {
       <button
         onClick={handleClick}
         className="btn btn-dark btn-lg btn-block"
-        type="button"
+        type="submit"
       >
         Sign in
       </button>

@@ -59,7 +59,7 @@ function App() {
           <div className="app">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/info/:id/:isLoggedIn" component={Info} />
+              <Route exact path="/info/:id" component={Info} />
               <Route exact path="/login" component={Login} />
             </Switch>
           </div>

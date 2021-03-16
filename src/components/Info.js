@@ -34,10 +34,7 @@ const Info = (props) => {
   // if the event information is populated, then render
   if (event) {
     //if a user that is not logged in tries to access a private event, tell them to log in
-    if (
-      props.match.params.isLoggedIn === "false" &&
-      event.permission === "private"
-    ) {
+    if (userContext[0] == false && event.permission === "private") {
       return (
         <div>
           <h1 className="container d-flex justify-content-center">
@@ -50,7 +47,6 @@ const Info = (props) => {
           </div>
         </div>
       );
-      // if a logged in user accesses a private event, or a user accesses a public event, render event information
     } else {
       return (
         <div className="container">
@@ -61,7 +57,13 @@ const Info = (props) => {
             <div className="card-body">
               <h5>About The Event:</h5>
               <p className="card-text">{event.description}</p>
-
+              {event.speakers.length === 0 && (
+                <div className="details">
+                  <GiPublicSpeaker className="mx-3" />
+                  No Speakers For This Event
+                  <br />
+                </div>
+              )}
               {event.speakers.length !== 0 && (
                 <div className="speaker">
                   <GiPublicSpeaker className="mx-3" />
@@ -110,6 +112,14 @@ const Info = (props) => {
               )}
               {event.permission === "public" && !userContext[0] && (
                 <div className="details">
+                  <FaLink className="mx-3" />
+                  <strong>Hacker Link:</strong>{" "}
+                  <a href={event.private_url}>here!</a>
+                  <br />
+                </div>
+              )}
+              {event.permission === "public" && !userContext[0] && (
+                <div className="details">
                   <FaExternalLinkAlt className="mx-3" />
                   <strong>Learn More:</strong>{" "}
                   <a href={event.public_url}>here!</a>
@@ -132,13 +142,7 @@ const Info = (props) => {
                   <br />
                 </div>
               )}
-              {event.speakers.length === 0 && (
-                <div className="details">
-                  <GiPublicSpeaker className="mx-3" />
-                  No Speakers For This Event
-                  <br />
-                </div>
-              )}
+
               <div className="card-footer bg-transparent">
                 <strong>Related Events:</strong>
                 <ul>
@@ -162,9 +166,15 @@ const Info = (props) => {
         </div>
       );
     }
-    // if the events information is not yet populated, do not render anything yet
+    // if the events information is not yet populated, render loading page
   } else {
-    return null;
+    return (
+      <div>
+        <h1 className="container d-flex justify-content-center">
+          Loading...
+        </h1>
+      </div>
+    );
   }
 };
 
