@@ -3,18 +3,19 @@
 ## Live Demonstration
 This application was deployed through Heroku and can be viewed at https://rocky-sierra-82628.herokuapp.com/
 
-### `npm start`
+## Authentication
+The username and password to login are the "username" and "password" respectfully.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Local Development
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To run this app on your local machine, you must:
+1. Clone this project repository
+2. cd into the project directory and `npm install` the dependencies
+3. Run `npm start` in the command line 
+4. Go to [localhost:3000](localhost:3000)
 
-### `npm test`
+## Dependancies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
