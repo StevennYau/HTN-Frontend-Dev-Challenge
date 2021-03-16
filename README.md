@@ -24,4 +24,4 @@ The dependencies used in this project and that should be installed are:
 "react-icons": "^4.2.0",
 "react-router-dom": "^5.2.0"
 ```
-**Thank you for viewing my submission! Please contact me at [stevenyau@gmail.com](mailto:stevenyau@gmail.com?subject=Hack The North Frontend Dev Challenge)**
+**Thank you for viewing my submission! Please contact me at [stevenyau@gmail.com](mailto:stevenyau@gmail.com?subject=Hack%20The%20North%20Frontend%20Dev%20Challenge)**
