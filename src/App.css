@@ -46,8 +46,6 @@
   text-align: center;
 }
 
-
-
 .App-link {
   color: #61dafb;
 }
@@ -73,11 +71,13 @@ body {
 .center1 {
   text-align: justify;
 }
+
 .center1 > div {
   display: inline-block;
   line-height: 30px;
   padding: 0 10px;
 }
+
 .center1:after {
   content: " ";
   display: inline-block;
@@ -89,12 +89,23 @@ body {
 }
 
 .speaker-pfp{
-  max-height: 200px;
-  max-height: 200px;
-  padding-bottom: 5px;
-  padding-top: 21px;
+  max-height: 180px;
+  max-height: 180px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 li{
   padding-top: 15px;
+}
+
+.details {
+  padding-bottom: 10px;
+}
+
+.event-type {
+  padding-bottom: 10px;
+  padding-top: 10px;
 }

@@ -94,10 +94,10 @@ const Home = () => {
             <option value="tech_talk">Tech Talks</option>
           </select>
         </div>
-        
+
         {/* Filter and Map through the search and filter options to return the correct data */}
         {eventContext.events
-        //this filter is for the filter function for the events
+          //this filter is for the filter function for the events
           .filter((val) => {
             if (filterTerm === "default") {
               return val;
@@ -115,7 +115,7 @@ const Home = () => {
               }
             }
           })
-          // this filter is for the search function 
+          // this filter is for the search function
           .filter((val) => {
             if (searchTerm === "") {
               return val;

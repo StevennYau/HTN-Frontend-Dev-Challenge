@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext, EventsContext } from "../App";
 import { timeConverter, dateConverter } from "./Home";
+import { FaStore, FaClock, FaExternalLinkAlt, FaLink } from "react-icons/fa";
+import { GiPublicSpeaker } from "react-icons/gi";
 
 const Info = (props) => {
   const userContext = useContext(UserContext);
@@ -59,63 +61,84 @@ const Info = (props) => {
             <div className="card-body">
               <h5>About The Event:</h5>
               <p className="card-text">{event.description}</p>
-              <ul>
-                <li>
-                  <strong>Event Type:</strong> {displayEvent(event.event_type)}
-                </li>
-                {event.permission === "public" && userContext[0] && (
-                  <li>
-                    <strong>Private Link:</strong>{" "}
-                    <a href={event.private_url}>here!</a>
-                  </li>
+
+              {event.speakers.length !== 0 && (
+                <div className="speaker">
+                  <GiPublicSpeaker className="mx-3" />
+                  <strong>Speaker:</strong> {event.speakers[0].name} <br />
+                </div>
+              )}
+              {event.speakers.length !== 0 &&
+                event.speakers[0].profile_pic != null && (
+                  <img
+                    className="speaker-pfp rounded-circle"
+                    src={event.speakers[0].profile_pic}
+                  />
                 )}
-                {event.permission === "public" && userContext[0] && (
-                  <li>
-                    <strong>Public Link:</strong>{" "}
-                    <a href={event.public_url}>here!</a>
-                  </li>
-                )}
-                {event.permission === "public" && !userContext[0] && (
-                  <li>
-                    <strong>Link:</strong> <a href={event.public_url}>here!</a>
-                  </li>
-                )}
-                {event.permission === "private" && (
-                  <li>
-                    <strong>Private Link:</strong>{" "}
-                    <a href={event.private_url}>here!</a>
-                  </li>
-                )}
-                {event.permission === "private" && (
-                  <li>
-                    <strong>Public Link:</strong>{" "}
-                    <a href={event.public_url}>here!</a>
-                  </li>
-                )}
-                <li>
-                  <strong>Start Time:</strong> {dateConverter(event.start_time)}
-                  : {timeConverter(event.start_time)}
-                </li>
-                <li>
-                  <strong>End Time:</strong> {dateConverter(event.end_time)}:{" "}
-                  {timeConverter(event.end_time)}
-                </li>
-                {event.speakers.length === 0 && (
-                  <li>No Speakers For This Event</li>
-                )}
-                {event.speakers.length !== 0 && (
-                  <li>
-                    <strong>Speaker:</strong> {event.speakers[0].name}{" "}
-                  </li>
-                )}
-                {event.speakers.length !== 0 &&
-                  event.speakers[0].profile_pic != null && (
-                    <img
-                      className="speaker-pfp"
-                      src={event.speakers[0].profile_pic}
-                    />
-                  )}
-              </ul>
+              <div className="event-type">
+                <FaStore className="mx-3" />
+                <strong>Event Type:</strong> {displayEvent(event.event_type)}
+                <br />
+              </div>
+              <div className="details">
+                <FaClock className="mx-3" />
+                <strong>Start Time:</strong> {dateConverter(event.start_time)}:{" "}
+                {timeConverter(event.start_time)}
+                <br />
+              </div>
+              <div className="details">
+                <FaClock className="mx-3" />
+                <strong>End Time:</strong> {dateConverter(event.end_time)}:{" "}
+                {timeConverter(event.end_time)}
+                <br />
+              </div>
+              {event.permission === "public" && userContext[0] && (
+                <div className="details">
+                  <FaLink className="mx-3" />
+                  <strong>Hacker Link:</strong>{" "}
+                  <a href={event.private_url}>here!</a>
+                  <br />
+                </div>
+              )}
+              {event.permission === "public" && userContext[0] && (
+                <div className="details">
+                  <FaExternalLinkAlt className="mx-3" />
+                  <strong>Learn More:</strong>{" "}
+                  <a href={event.public_url}>here!</a>
+                  <br />
+                </div>
+              )}
+              {event.permission === "public" && !userContext[0] && (
+                <div className="details">
+                  <FaExternalLinkAlt className="mx-3" />
+                  <strong>Learn More:</strong>{" "}
+                  <a href={event.public_url}>here!</a>
+                  <br />
+                </div>
+              )}
+              {event.permission === "private" && (
+                <div className="details">
+                  <FaLink className="mx-3" />
+                  <strong>Hacker Link:</strong>{" "}
+                  <a href={event.private_url}>here!</a>
+                  <br />
+                </div>
+              )}
+              {event.permission === "private" && (
+                <div className="details">
+                  <FaExternalLinkAlt className="mx-3" />
+                  <strong>Learn More:</strong>{" "}
+                  <a href={event.public_url}>here!</a>
+                  <br />
+                </div>
+              )}
+              {event.speakers.length === 0 && (
+                <div className="details">
+                  <GiPublicSpeaker className="mx-3" />
+                  No Speakers For This Event
+                  <br />
+                </div>
+              )}
               <div className="card-footer bg-transparent">
                 <strong>Related Events:</strong>
                 <ul>
