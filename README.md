@@ -15,7 +15,10 @@ To run this app on your local machine, you must:
 4. Go to [localhost:3000](http://localhost:3000)
 
 ## Dependancies
-
+The dependencies used in this project and that should be installed are:
+```
+test
+```
 
 
 ### `npm run build`
