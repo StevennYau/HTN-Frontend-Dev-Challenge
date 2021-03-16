@@ -12,7 +12,7 @@ To run this app on your local machine, you must:
 1. Clone this project repository
 2. cd into the project directory and `npm install` the dependencies. The npm commands require [node.js](https://nodejs.org/en/) to be installed.
 3. Run `npm start` in the command line 
-4. Go to [localhost:3000](localhost:3000)
+4. Go to [localhost:3000](http://localhost:3000)
 
 ## Dependancies
 
