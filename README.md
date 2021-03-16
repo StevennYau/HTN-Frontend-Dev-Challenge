@@ -4,7 +4,7 @@
 This application was deployed through Heroku and can be viewed at https://rocky-sierra-82628.herokuapp.com/
 
 ## Authentication
-The username and password to login are the "username" and "password" respectfully.
+The username and password to login are "username" and "password" respectfully.
 
 ## Local Development
 
