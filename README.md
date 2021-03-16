@@ -24,3 +24,4 @@ The dependencies used in this project and that should be installed are:
 "react-icons": "^4.2.0",
 "react-router-dom": "^5.2.0"
 ```
+**Thank you for viewing my submission! Please contact me at [stevenyau@gmail.com](mailto:stevenyau@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)**
