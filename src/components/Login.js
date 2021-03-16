@@ -6,7 +6,7 @@ const Login = () => {
   const userContext = useContext(UserContext);
   let history = useHistory();
 
-  // hard coded login to be successful everytime, updates user state and redirects to homepage after
+  // hard coded login to be successful everytime then updates user state and redirects to homepage after
   function handleClick() {
     userContext[1]({ type: USER_ACTIONS.LOGIN });
     history.push("/");
