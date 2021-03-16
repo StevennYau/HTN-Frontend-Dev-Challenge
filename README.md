@@ -1,5 +1,5 @@
 # Hack The North Frontend Developer Challenge 2021
-
+This web application was made for the Hack the North's 2021 Frontend Developer Challenge.
 ## Live Demonstration
 This application was deployed through Heroku and can be viewed at https://rocky-sierra-82628.herokuapp.com/
 
